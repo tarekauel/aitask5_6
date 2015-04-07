@@ -24,8 +24,8 @@ public class Roboter {
     }
 
     public static Point move(Point p, double stepSize, double deltaX) {
-        double rand_x = Math.random() * stepSize / 4;
-        double rand_y = Math.random() * stepSize / 4;
+        double rand_x = Math.random();
+        double rand_y = Math.random();
 
         double test_x_1 = p.x + rand_x;
         double test_y_1 = p.y + rand_y;
