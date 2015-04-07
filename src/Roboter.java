@@ -24,8 +24,8 @@ public class Roboter {
     }
 
     public static Point move(Point p, double stepSize, double deltaX) {
-        double rand_x = Math.random() * stepSize / 4;
-        double rand_y = Math.random() * stepSize / 4;
+        double rand_x = Math.random();
+        double rand_y = Math.random();
 
         double test_x_1 = p.x + rand_x;
         double test_y_1 = p.y + rand_y;
@@ -38,12 +38,15 @@ public class Roboter {
 
         double deltaE = (distance_2 - distance_1);
 
-        double move = deltaE / deltaX * (-1 * stepSize);
+        double move = deltaE / deltaX * stepSize;
 
-        p.x -= move * (rand_x / (rand_x + rand_y));
-        p.y -= move * (rand_y / (rand_x + rand_y));
+        double move_x = move * (rand_x / (rand_x + rand_y));
+        double move_y = move * (rand_y / (rand_x + rand_y));
 
-        System.out.printf("\t Other direction: X: %.8f\tY: %.8f\tDistance: %.8f\n", p.x + 2*(move * (rand_x / (rand_x + rand_y))), p.y + 2*(move * (rand_y / (rand_x + rand_y))), distance(p.x + 2*(move * (rand_x / (rand_x + rand_y))), p.y + 2*(move * (rand_y / (rand_x + rand_y)))));
+        p.x += move_x;
+        p.y += move_y;
+
+        System.out.printf("\t Other direction: X: %.8f\tY: %.8f\tDistance: %.8f\n", p.x - 2*move_x, p.y - 2*move_y, distance(p.x - 2*move_x, p.y - 2*move_y));
 
         if (p.x < 0) p.x = 0;
         if (p.y < 0) p.y = 0;
